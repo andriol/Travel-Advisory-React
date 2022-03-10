@@ -11,6 +11,7 @@ const Map = ({
   coordinates,
   places,
   setPaperClicked,
+  weather,
 }) => {
   const classes = useStyles();
   const defaultPhoto =
@@ -65,6 +66,14 @@ const Map = ({
                 <Rating size='small' value={Number(place.rating)} readOnly />
               </Paper>
             )}
+          </div>
+        ))}
+        {weather?.list?.map((data, index) => (
+          <div key={index} lat={data.coord.lat} lng={data.coord.lon}>
+            <img
+              height='70'
+              src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+            />
           </div>
         ))}
       </GoogleMapReact>
